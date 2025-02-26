@@ -1,0 +1,92 @@
+search_and_gather_story_data:
+  description: >
+    Conduct focused research on {topic}, gathering historical events,
+    cultural references, and relevant details to enrich the story.
+    This step is skipped if the story is completely original. Stay focused.
+  expected_output: >
+    - Existing versions of {topic} across different cultures & time periods
+    - Historical and cultural context relevant to {topic}
+    - Related myths, legends, and folktales
+    - Scientific or factual references, if applicable
+    - Cultural significance & evolution in media and literature
+    - A structured list of **credible sources** (books, articles, websites, historical texts).
+  agent: background_researcher
+
+analyze_cultural_context:
+  description: >
+    Analyze the collected research to extract valuable cultural, historical,
+    and mythological insights, ensuring authenticity and respectful representation.
+    This step is skipped if the story is completely original.
+  expected_output: >
+    - Key cultural elements, traditions, and beliefs relevant to {topic}
+    - Symbolic motifs and allegories from the culture
+    - Authentic storytelling techniques used in the culture
+    - Avoidance of stereotypes and misrepresentation
+    - Identification of culturally sensitive themes
+    - Recommendations for diverse & accurate representation
+  agent: cultural_expert
+
+plan_story:
+  description: >
+    Develop a structured and compelling story outline for {topic}, ensuring
+    depth, engagement, and narrative flow.
+  expected_output: >
+    - Chosen narrative structure (e.g., Hero's Journey, Rashomon Effect)
+    - Detailed plot outline with key events & turning points
+    - Character profiles with motivations & development arcs
+    - Themes and symbolic elements
+    - Opening and conclusion strategies
+    - Pacing and flow recommendations
+  agent: story_planner
+
+write_story:
+  description: >
+    Transform the story outline, research, and cultural insights into a
+    fully written, engaging, and immersive narrative for {topic}.
+  expected_output: >
+    - A complete, polished story with a strong beginning, middle, & end
+    - Rich, well-developed characters with clear motivations
+    - Vivid world-building & sensory details
+    - Seamless incorporation of cultural elements & themes
+    - Compelling dialogue & narrative flow
+    - Balanced pacing between action, dialogue, & introspection
+    - A satisfying and thematically strong conclusion
+    - A "Sources" section at the end if the story is inspired by existing texts, articles, or references preferabley clickable links.
+  agent: story_writer
+
+ensure_narrative_consistency:
+  description: >
+    Review the entire story for continuity, logical flow, and authenticity,
+    ensuring coherence in characters, themes, and cultural accuracy.
+  expected_output: >
+    - Logical consistency in plot progression and character arcs
+    - Continuity in character descriptions, motivations, and actions
+    - Adherence to the planned narrative structure
+    - Accuracy of historical & cultural elements
+    - Balanced tone, pacing, and stylistic consistency
+    - Smooth transitions & well-structured paragraphs
+    - Identification of weak areas & recommended fixes
+  agent: consistency_checker
+
+generate_story_html:
+  description: >
+    Create a fully styled, standalone modern HTML page with inline CSS and JavaScript
+    that reflects the theme, tone, and cultural context of {topic}, ensuring an
+    immersive and accessible storytelling experience.
+  expected_output: >
+    - A valid standalone modern HTML document starting with <!DOCTYPE html>.
+    - No ```html or ``` in the response.
+    - Responsive moderndesign adapting to different screen sizes
+    - Visually appealing layout using typography, color, and spacing
+    - Culturally appropriate color palette with high readability contrast
+    - Typography that enhances readability and reflects the story's tone
+    - CSS-generated patterns or shapes for visual storytelling
+    - Subtle interactive elements (e.g., hover effects, transitions)
+    - Accessibility compliance following WCAG guidelines
+    - Easy navigation for long-form narratives
+    - Thematic loading animations using CSS
+    - Optimized performance with inline styles and scripts
+    - SEO metadata for search optimization
+    - No external dependencies (all styles and scripts are inline)
+    - No images
+  agent: web_designer
