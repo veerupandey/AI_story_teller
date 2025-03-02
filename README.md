@@ -22,8 +22,8 @@ You can set up this project using **Conda** or **virtual environments (venv)**.
 
 ### 🔹 1️⃣ Clone the Repository  
 ```bash
-git clone https://github.com/firstratio/ai-story-creator.git
-cd ai-story-creator
+git clone https://github.com/veerupandey/AI_story_teller.git
+cd AI_story_teller
 ```
 
 ### 🔹 2️⃣ Choose a Setup Method  

@@ -26,13 +26,6 @@ class Citation(BaseModel):
     url: str = Field(description="URL of the source")
     context: str = Field(description="Brief context of why this source is relevant")
 
-class Character(BaseModel):
-    name: str = Field(description="Character's name")
-    role: str = Field(description="Character's role in the story")
-    description: str = Field(description="Brief description of the character")
-    motivation: str = Field(description="Character's primary motivation")
-    cultural_significance: Optional[str] = Field(None, description="Cultural significance of this character")
-
 class StoryResearch(BaseModel):
     citations: List[Citation] = Field(default_factory=list, description="Sources used in research")
     cultural_context: str = Field(description="Cultural insights and background information")
@@ -71,7 +64,7 @@ class StoryTellingCrew:
         self.topic = topic
         self.file_topic = file_topic if file_topic else topic
 
-    # **Agents**
+    # Agents
     @agent
     def story_manager(self) -> Agent:
         return Agent(
@@ -79,7 +72,7 @@ class StoryTellingCrew:
             llm=llm,
             verbose=True,
             allow_delegation=True,
-            max_iter=5,
+            max_iter=20,
             max_rpm=40,
             cache=True,
         )
@@ -113,7 +106,7 @@ class StoryTellingCrew:
     def web_designer(self) -> Agent:
         return Agent(config=self.agents_config["web_designer"], llm=llm, verbose=True)
 
-    # **Tasks**
+    # Tasks
     @task
     def search_and_gather_story_data(self) -> Task:
         search_input = {"search_query": f"{self.topic}, historical sources, cultural analysis"}
@@ -161,6 +154,21 @@ class StoryTellingCrew:
         )
 
     @task
+    def final_story_revision(self) -> Task:
+        return Task(
+            config=self.tasks_config["final_story_revision"],
+            agent=self.story_writer(),
+            input_models={
+                "draft": StoryDraft,
+                "review": ConsistencyReview,
+                "plan": StoryPlan,
+                "research": StoryResearch,
+                "citations": List[Citation]
+            },
+            output_pydantic=StoryDraft,
+        )
+
+    @task
     def generate_story_html_task(self) -> Task:
         filename = clean_filename(self.file_topic)
         output_path = f"assets/{filename}"
@@ -169,8 +177,7 @@ class StoryTellingCrew:
             agent=self.web_designer(),
             input_models={
                 "draft": StoryDraft,
-                "review": ConsistencyReview,
-                "citations": List[Citation]  # Add this line
+                "citations": List[Citation]
             },
             output_file=output_path,
             output_template={
@@ -178,7 +185,7 @@ class StoryTellingCrew:
             }
         )
 
-    # **Create Crew with Sequential Process**
+    # Create Crew with Sequential Process
     @crew
     def crew(self) -> Crew:
         return Crew(
@@ -196,17 +203,17 @@ class StoryTellingCrew:
                 self.plan_story(),
                 self.write_story(),
                 self.ensure_narrative_consistency(),
+                self.final_story_revision(),
                 self.generate_story_html_task()
             ],
             manager_agent=self.story_manager(),
-            # process=Process.hierarchical,
             planning=True,
             planning_llm=planning_llm,
             respect_context_window=True,
             verbose=True,
         )
 
-# **Execution**
+# Execution
 if __name__ == "__main__":
     os.makedirs("assets", exist_ok=True)
 

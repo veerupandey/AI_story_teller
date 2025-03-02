@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="An interactive text-based experience exploring the Legend of Rani Padmini.">
+<meta name="keywords" content="Rani Padmini, Padmavati, Alauddin Khilji, Chittor, Jauhar, Rajput, Delhi Sultanate, historical fiction, interactive story">
+<title>The Legend of Rani Padmini</title>
+<style>
+body {
+  font-family: 'Lora', serif; /* or a similar serif font */
+  background-color: #f0e6d6; /* Light beige */
+  color: #333; /* Dark grey text */
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  text-align: justify;
+  overflow-x: hidden; /* Prevent horizontal scroll on smaller screens */
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif; /* Or a similar elegant serif font */
+  color: #800000; /* Dark red */
+  text-align: center; /* Center headings */
+  margin-bottom: 1em;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-top: 1em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+section {
+  padding: 2em;
+  margin-bottom: 2em;
+  background-color: #fff; /* White section background */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+.loop-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center loops */
+}
+
+.loop {
+  width: 45%; /* Adjust loop width for responsiveness */
+  margin: 1em;
+  padding: 1em;
+  background-color: #f8f8f8; /* Lighter grey for loops */
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+}
+
+@media (max-width: 768px) {
+  .loop {
+    width: 95%; /* Full width on smaller screens */
+  }
+  .loop-container {
+      flex-direction: column; /* Stack loops vertically */
+  }
+}
+
+/* CSS-generated pattern */
+.pattern {
+  background-image: repeating-linear-gradient(
+    45deg,
+    #ddd,
+    #ddd 10px,
+    #eee 10px,
+    #eee 20px
+  );
+  background-size: 20px 20px; /* Adjust pattern size */
+}
+
+/* Interactive element:  subtle highlight on hover */
+.loop:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+/* Loading animation */
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(240, 230, 214, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.loading.fade-out {
+  opacity: 0;
+}
+
+.loading-text {
+    font-size: 2em;
+    color: #800000;
+    font-family: 'Playfair Display', serif;
+}
+
+
+/*Accessible styles */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+</style>
+</head>
+<body>
+  <div class="loading">
+    <p class="loading-text">Unveiling the Legend...</p>
+  </div>
+
+
+  <div class="pattern">
+      <h1>The Legend of Rani Padmini</h1>
+  </div>
+  <section>
+    <p>The wind carried whispers of ash and sorrow across the ravaged plains, painting the dawn a grim, charcoal grey. Skeletal structures of once-proud palaces stood against the bruised sky, silent witnesses to a tragedy etched in blood and fire. This was Chittor, a kingdom reduced to ruins, its story a tapestry woven from threads of defiance, obsession, and a truth obscured by the smoke of a thousand burning pyres. This is not the beginning. This is the end. Or perhaps, only one ending.</p>
+  </section>
+
+  <section class="loop-container">
+    <div class="loop" id="loop1">
+      <h2>Loop 1: The Raven’s Hunger</h2>
+      <p>...</p> </div>
+    <div class="loop" id="loop2">
+      <h2>Loop 2: The Lotus in the Citadel</h2>
+      <p>...</p> </div>
+  </section>
+
+  <section class="loop-container">
+    <div class="loop" id="loop3">
+      <h2>Loop 3: The Siege</h2>
+      <p>...</p> </div>
+    <div class="loop" id="loop4">
+      <h2>Loop 4: The Jauhar</h2>
+      <p>...</p> </div>
+  </section>
+
+  <section>
+    <div class="loop" id="loop5">
+        <h2>Loop 5: The Aftermath</h2>
+        <p>...</p>
+      </div>
+  </section>
+
+<script>
+//Fills in the loop content from the provided text
+const loop1Content = `The throne was a cage of gilded bars, confining him yet fueling his insatiable hunger. Alauddin Khilji, Sultan of Delhi, felt it gnawing at him – a ravenous beast, its eyes burning with ambition, consuming kingdoms whole. His advisors, whispering snakes in the court’s silken undergrowth, fueled the beast. “Chittor, Your Majesty,” they hissed, “a jewel glittering on the brow of Rajput pride. And at its heart, Rani Padmini, a lotus whose beauty eclipses the sun.” The beast stirred, its hunger sharpened by their words. He saw not just a kingdom, but a conquest to solidify his legend, a prize to satiate his dark desires. He saw a woman, but not merely as a woman. She was a symbol of unconquerable resistance, a fortress of defiance that he yearned to breach. His conquest of Chittor was painted in the bold strokes of his ambition, justified to his court as a strategic move of political dominance. But in the darkest corners of his mind, a more primal need took root and bloomed into an obsession.`
+const loop2Content = `The lotus blooms in the mud, they say. Rani Padmini, wife of Raja Rawal Ratan Singh, felt the mud of impending war clinging to her feet. Chittor, her home, the citadel of her ancestors, echoed with the whispers of an approaching storm. She was not merely a queen of unmatched beauty, a creature of delicate grace. She was the unwavering heart of her kingdom, a strategist whose mind was as sharp as the scimitars of her warriors. She saw Khilji’s advance not as an inevitable fate, but a challenge. The very air felt thick with the Sultan’s shadow, a palpable threat that tested her strength, a shadow that fell not only upon her kingdom but also upon the countless lives that depended on her resilience and shrewd calculations. The whispers of Jauhar, a devastating sacrifice of honor, were already carried on the wind, a brutal choice whispered between the women of Chittor’s royal court. She knew that the resilience of her kingdom depended on her fortitude and wisdom.`
+const loop3Content = `The siege began, a clash of steel and fury. Khilji’s army, a tide of relentless force, crashed against the ramparts of Chittor. From Khilji’s perspective, it was a war of conquest, a demonstration of power. He witnessed the Rajput warriors’ valiant defense, a desperate dance of death that both ignited and unnerved him. From Ratan Singh’s perspective, it was a desperate battle to protect his kingdom and his wife, a relentless struggle against overwhelming odds, forcing him to make impossible choices. From Padmini’s vantage point, it was a war of wits, where her strategy and courage were pitted against the Sultan’s ambition. She saw her people’s courage as a testament to their love for the kingdom, and the sight of the approaching enemy fueled her strength. The city’s fate trembled on the edge of despair and unwavering courage, fueled by stories of heroism and a deep-seated love for the land.`
+const loop4Content = `The pivotal moment arrived – the Jauhar. From Khilji’s viewpoint, it was a crushing defeat; his prize was snatched from his grasp by fire and sacrifice. The tales that reached his ears were colored by the bitterness of defeat. Yet, rumors, born in the smoke and chaos of war, whispered of a secret rendezvous, a glimpse of the queen’s ethereal beauty. However, from within the confines of Chittor’s fortresses, the Jauhar was seen as an act of ultimate defiance, a testament to the Rajput women’s courage in the face of certain defeat and an act of defiance against the Sultan’s oppressive regime. Their choice, the ultimate expression of sacrifice, echoed through generations. Was it a calculated move to deny Khilji his prize, or a collective expression of despair and self-preservation?`
+const loop5Content = `Khilji’s victory was a hollow echo. His obsession had driven him to conquer a kingdom, but it had not satisfied his hunger. The raven, sated with a feast of ashes, found no joy in its conquest. He had broken a fortress, but he had broken his own soul. The echoes of the Jauhar would haunt him until his own death. The ruins of Chittor mourned, a testament to the cost of ambition and war. But from the ashes, a different story bloomed—a tale of resilience, of resistance against overwhelming odds. It was a story that surpassed the singular narrative that Khilji had created; a story of the profound love of a kingdom, and of the sacrifices made to protect it. The tale of Rani Padmini evolved not just from the lips of those who witnessed her story but from the echoes of the fire that consumed Chittor’s fortresses.`
+
+
+document.getElementById('loop1').querySelector('p').innerText = loop1Content;
+document.getElementById('loop2').querySelector('p').innerText = loop2Content;
+document.getElementById('loop3').querySelector('p').innerText = loop3Content;
+document.getElementById('loop4').querySelector('p').innerText = loop4Content;
+document.getElementById('loop5').querySelector('p').innerText = loop5Content;
+
+// Remove loading screen after a short delay
+setTimeout(() => {
+  const loadingScreen = document.querySelector('.loading');
+  loadingScreen.classList.add('fade-out');
+  setTimeout(() => {
+    loadingScreen.remove();
+  }, 500); // Wait for fade-out transition to complete
+}, 2000); //2 second delay
+
+</script>
+</body>
+</html>

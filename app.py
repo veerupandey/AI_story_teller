@@ -75,7 +75,7 @@ def remove_loading_elements(html_content):
     which can blur the rest of the PDF.
     """
     soup = BeautifulSoup(html_content, "html.parser")
-    for class_name in ["spinner", "loader", "loading"]:
+    for class_name in ["spinner", "loader", "loading", "loading-spinner"]:
         for el in soup.find_all(class_=class_name):
             el.decompose()
         for el in soup.find_all(id=class_name):

@@ -68,10 +68,18 @@ ensure_narrative_consistency:
     - Identification of weak areas & recommended fixes
   agent: consistency_checker
 
+final_story_revision:
+  description: >
+    Revise the story based on consistency review feedback, incorporate any necessary changes,
+    and include relevant citations from the provided research.
+  expected_output: >
+    A revised and polished version of the story with properly integrated citations.
+  agent: story_writer
+
 generate_story_html:
   description: >
     Create a fully styled, standalone modern HTML page with inline CSS and JavaScript
-    that reflects the theme, tone, and cultural context of {topic}, ensuring an
+    that reflects the theme, tone, and cultural context of {topic}, sources at the end if any, ensuring an
     immersive and accessible storytelling experience.
   expected_output: >
     - A valid standalone modern HTML document starting with <!DOCTYPE html>.
@@ -89,4 +97,5 @@ generate_story_html:
     - SEO metadata for search optimization
     - No external dependencies (all styles and scripts are inline)
     - No images
+    - Include **credible sources** at the end (books, articles, websites, historical texts), formated to look polished.
   agent: web_designer
